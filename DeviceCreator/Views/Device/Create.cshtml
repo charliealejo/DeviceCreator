@@ -1,0 +1,84 @@
+﻿@model DeviceCreator.Models.Web.DeviceForm
+@{
+    ViewBag.Title = @Resources.AddDevice;
+}
+
+<h2>@Resources.AddDevice</h2>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+      
+    <div class="form-horizontal">        
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(
+                    x => x.Type,
+                    null, 
+                    new { @class = "form-control col-md-4",
+                          @onchange = "showHideGatewayFields();" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID, new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ID, new { @class = "form-control col-md-4" })
+                @Html.ValidationMessageFor(model => model.ID)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SerialNumber, new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SerialNumber, new { @class = "form-control col-md-4" })
+                @Html.ValidationMessageFor(model => model.SerialNumber)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirmwareVersion, new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirmwareVersion, new { @class = "form-control col-md-4" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.State, new { @class = "form-control col-md-4" })
+            </div>
+        </div>
+        <div class="form-group" id="gateway_ip">
+            @Html.LabelFor(model => model.IP, new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IP, new { @class = "form-control col-md-4" })
+                @Html.ValidationMessageFor(model => model.IP)
+            </div>
+        </div>
+        <div class="form-group" id="gateway_port">
+            @Html.LabelFor(model => model.Port, new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Port, new { @class = "form-control col-md-4" })
+                @Html.ValidationMessageFor(model => model.Port)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@Resources.Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    var showHideGatewayFields = function() {
+        if ($("#Type")[0].value === "2") {
+            $("#gateway_ip").show();
+            $("#gateway_port").show();
+        } else {
+            $("#gateway_ip").hide();
+            $("#gateway_port").hide();
+        }
+    }
+
+    showHideGatewayFields();
+</script>

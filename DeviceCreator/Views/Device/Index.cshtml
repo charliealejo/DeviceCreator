@@ -1,0 +1,50 @@
+﻿@model System.Collections.Generic.IEnumerable<Shared.Models.IDevice>
+
+@{
+    ViewBag.Title = @Resources.DeviceList;
+}
+
+<h2>@Resources.DeviceList</h2>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">@Resources.Type</th>
+      <th scope="col">@Resources.ID</th>
+      <th scope="col">@Resources.SerialNumber</th>
+      <th scope="col">@Resources.FirmwareVersion</th>
+      <th scope="col">@Resources.State</th>
+      <th scope="col">@Resources.IP</th>
+      <th scope="col">@Resources.Port</th>
+    </tr>
+  </thead>
+  <tbody>
+        @if (Model == null || Model.Count() == 0) {
+      <tr>
+          <td colspan="7">@Resources.EmptyDeviceList.</td>
+      </tr>
+        } else {
+        foreach (Shared.Models.IDevice device in Model) {
+    <tr>
+      <td>@Resources.ResourceManager.GetString(device.GetType().Name)</td>
+      <td>@device.ID</td>
+      <td>@device.SerialNumber</td>
+      <td>@device.FirmwareVersion</td>
+      <td>@device.State</td>
+            @if (device is Shared.Models.Gateway)
+            {
+                var gateway = device as Shared.Models.Gateway;
+      <td>@gateway.IP</td>
+      <td>@gateway.Port</td>
+            }
+            else
+            {
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+            }
+    </tr>
+        }
+        }
+  </tbody>
+</table>
+
+<a href="/Device/Create">@Resources.AddNew</a>

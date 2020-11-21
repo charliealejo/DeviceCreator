@@ -1,0 +1,34 @@
+﻿Ejercicio de programación y diseño
+
+Se trata de desarrollar un sistema en .Net en el que se puedan dar de alta tres tipos de
+dispositivos: contadores de agua, de luz y gateways.
+
+Donde como parámetros tienen:
+
+- Contador de agua: [id], [número de serie], marca, modelo
+- Contador de luz: [id], [número de serie], marca, modelo
+- Gateway: [id], [número de serie], marca, modelo, [ip], puerto
+
+Las propiedades entre corchetes son obligatorias.
+
+El sistema deberá evitar insertar dos veces el mismo dispositivo.
+
+Pedimos un front-end que puede ser a elegir: consola, web o aplicación de escritorio.
+Avanzado: varios front-end a la vez.
+
+Pedimos un back-end donde se ejecute la validación y se almacene. Se puede almacenar a
+elegir en fichero, base de datos o en memoria.
+Si se elige base de datos se valorará el uso de algún ORM.
+Avanzado: back-end que lea de cola con NServiceBus.
+
+Deberá estar escrito y comentado en inglés.
+
+Deberá incluir instrucciones de despliegue.
+
+Buscamos:
+- Limpieza y claridad del código
+- Tratamiento de los casos de uso no nominales y de las excepciones.
+- Robustez y calidad del sistema: pruebas unitarias.
+- Desacoplamiento entre los componentes del sistema.
+- Aplicación de conceptos básicos de la programación orientada a objetos y principios
+SOLID.
